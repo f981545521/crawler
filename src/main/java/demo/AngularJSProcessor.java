@@ -27,6 +27,7 @@ public class AngularJSProcessor implements PageProcessor {
             List<String> ids = new JsonPathSelector("$.data[*]._id").selectList(page.getRawText());
             if (CollectionUtils.isNotEmpty(ids)) {
                 for (String id : ids) {
+                	System.out.println("当前ID：" + id);
                     page.addTargetRequest("http://angularjs.cn/api/article/" + id);
                 }
             }

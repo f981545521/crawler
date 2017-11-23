@@ -33,16 +33,13 @@ public class ImagePipeline extends FilePersistentBase implements Pipeline {
 		
 		logger.warn("当前下载" + COUNTER + "："+ url);
 		DownloadImage.downloadImage(url, getPath());
-		
-		
-		
-		/*//通过：entry.getKey()获取Key；使用entry.getValue()获取Value。
-	    Set<Entry<String, Object>> entrySet = map.entrySet();
+
+		//通过：entry.getKey()获取Key；使用entry.getValue()获取Value。
+		/*Set<Entry<String, Object>> entrySet = map.entrySet();
 	    for(Entry<String, Object> entry:entrySet){
 	        System.out.println(entry.getKey() + "," + entry.getValue());
 	    }*/
-	    
-	    
+
 	}
 
 }

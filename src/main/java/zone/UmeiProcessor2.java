@@ -1,6 +1,10 @@
 package zone;
 
+import java.util.Arrays;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cn.acyou.utils.ConsolePipeline;
 import cn.acyou.utils.DownloadImage;
@@ -12,12 +16,19 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-public class UmeiProcessor implements PageProcessor{
+/**
+ * 第二版：传入列表URL
+ * @author youfang
+ *
+ */
+public class UmeiProcessor2 implements PageProcessor{
 	
 	//入口URL
-	private final static String URL = "http://www.umei.cc/meinvtupian/jiepaimeinv/13049.htm";
+	private final static String URL = "http://www.umei.cc/meinvtupian/siwameinv/";
 	
-	private final static String PATH = "jiepai";
+	private final static String PATH = "jiepai2";
+	
+	private static Logger log = LoggerFactory.getLogger(DownloadImage.class);
 	
 	/**
 	 * 部分一：抓取网站的相关配置，包括编码、抓取间隔、重试次数等
@@ -46,6 +57,14 @@ public class UmeiProcessor implements PageProcessor{
         /**
          * 部分三：从页面发现后续的url地址来抓取
          */
+		if (page.getUrl().regex(".*/$").match()) {
+			List<String> links = page.getHtml().xpath("[@class='TypeList']/li/a/@href").all();
+			for(String link : links) {
+				log.warn("---->列表链接：" + link );
+			}
+			// 通过page.addTargetRequests()方法来增加要抓取的URL
+			page.addTargetRequests(links);
+		}
 		List<String> links = page.getHtml().xpath("//div[@class='NewPages']").links().all();
         page.addTargetRequests(links);
 		
@@ -60,7 +79,7 @@ public class UmeiProcessor implements PageProcessor{
 		 * Spider是爬虫启动的入口
 		 * 从"http://www.cnblogs.com/shenjp/default.html?page=2"开始抓，开启5个线程抓取，启动爬虫
 		 */
-        Spider.create(new UmeiProcessor()).addUrl(URL).addPipeline(new ImagePipeline(PATH)).thread(5).run();
+        Spider.create(new UmeiProcessor2()).addUrl(URL).addPipeline(new ImagePipeline(PATH)).thread(5).run();
 	}
 	
 

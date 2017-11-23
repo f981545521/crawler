@@ -11,9 +11,16 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class DownloadImage {
 	
 	private static final String ROOT_PATH = "F:\\Qzone\\";
+	
+	private static Logger log = LoggerFactory.getLogger(DownloadImage.class);
+	
+	
 
 	/**
 	 * 下载图片
@@ -47,7 +54,7 @@ public class DownloadImage {
 		//关闭输出流
 		outStream.close();
 		
-		System.out.println("图片大小：" + imageFile.length()/1024 + "K");
+		log.info("图片大小：" + imageFile.length()/1024 + "K");
 		
 	}
 	
@@ -95,7 +102,7 @@ public class DownloadImage {
 			//关闭输出流
 			outStream.close();
 			
-			System.out.println("图片大小：" + imageFile.length()/1024 + "K");
+			log.info("图片大小：" + imageFile.length()/1024 + "K");
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

@@ -17,6 +17,8 @@ import cn.acyou.utils.DownloadImage;
  * 
  * 下载JSON
  * @author youfang
+ * 
+ * document.getElementById('js-thumb-next').click();
  *
  */
 public class Start {

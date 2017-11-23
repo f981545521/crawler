@@ -129,6 +129,13 @@ public class TestIt {
 		System.out.println(9<10 && 19<20);
 	}
 	
+	@Test
+	public void test7() {
+		String url = "http://www.umei.cc/meinvtupian/siwameinv/";
+		String regex = ".*/$";
+		System.out.println(url.matches(regex));
+		
+	}
 	
 	
 	

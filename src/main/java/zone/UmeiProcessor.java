@@ -12,6 +12,11 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 
+/**
+ * 第一版：传入详情页
+ * @author youfang
+ * @create 2017-11-24 22:35
+ */
 public class UmeiProcessor implements PageProcessor{
 	
 	//入口URL

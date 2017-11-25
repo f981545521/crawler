@@ -29,7 +29,7 @@ public class DownloadImage {
 	 * @param fileName	文件名
 	 * @throws Exception
 	 */
-	public static void downloadImage(String url,String path,String fileName) throws Exception {
+	public static void downloadImageWithFileName(String url,String path,String fileName) throws Exception {
 		URL originalURL = new URL(url);
 		//打开连接
 		HttpURLConnection conn = (HttpURLConnection) originalURL.openConnection();

@@ -30,10 +30,27 @@ public class MainTest {
 		pages.add("4");
 		pages.add("5");
 		System.out.println(pages.size());
-		
+
 		System.out.println(pages.get(0));
 
-		
+	}
+
+
+	@Test
+	public void test3(){
+
+		showMe("http://www.qq.com/","123","456","-7a890");
+	}
+
+	private void showMe(String url,String... path){
+
+		System.out.println(url);
+		StringBuilder sb = new StringBuilder();
+		for(String s : path){
+			sb.append(s + "\\");
+		}
+		System.out.println(sb);
+
 	}
 
 }

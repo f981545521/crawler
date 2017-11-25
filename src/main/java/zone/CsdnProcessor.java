@@ -11,14 +11,14 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.monitor.SpiderMonitor;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-public class App implements PageProcessor {
+public class CsdnProcessor implements PageProcessor {
 	private Site site = Site.me().setSleepTime(1);
 	int temp = 1;
 
 	// 执行这个main方法，即可在控制台看到抓取结果。webmagic默认有3秒抓取间隔，请耐心等待。
 	public static void main(String[] args) {
 		// Spider是爬虫的入口类,addurl为入口url
-		Spider oschinaSpider = Spider.create(new App()).addUrl("http://blog.csdn.net/CHENYUFENG1991/article/list/1")
+		Spider oschinaSpider = Spider.create(new CsdnProcessor()).addUrl("http://blog.csdn.net/CHENYUFENG1991/article/list/1")
 				// Pipeline是结果输出和持久化的接口，这里ConsolePipeline表示结果输出到控制台
 				.addPipeline(new ConsolePipeline());
 		try {

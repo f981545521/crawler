@@ -23,7 +23,7 @@ public class DownloadImage {
 	
 
 	/**
-	 * 下载图片
+	 * 指定文件名下载图片
 	 * @param url	下载路径
 	 * @param path	指定文件路径
 	 * @param fileName	文件名
@@ -59,7 +59,7 @@ public class DownloadImage {
 	}
 	
 	/**
-	 * 使用默认路径下载图片
+	 * 使用默认路径/绝对路径下载图片
 	 * @param url	下载路径
 	 * @param path	文件路径/"F:\\Qzone\\umei3	"	"234567"
 	 * @throws IOException 
@@ -112,10 +112,58 @@ public class DownloadImage {
 			e.printStackTrace();
 		}
 		return imageFile.length()/1024;
-		
 	}
-	
-	
+
+	/**
+	 * 使用默认路径下载图片
+	 * @param url	路径
+	 * @param paths	多文件路径/"F:\\Qzone\\umei3	"	"234567"
+	 * @throws IOException
+	 * @throws Exception
+	 */
+	public static Long downloadImageMultipath(String url,String... paths) {
+		URL originalURL;
+		byte[] data;
+		File imageFile = null;
+		try {
+			originalURL = new URL(url);
+			//打开连接
+			HttpURLConnection conn;
+			conn = (HttpURLConnection) originalURL.openConnection();
+			//设置请求方式为GET
+			conn.setRequestMethod("GET");
+			//设置超时时间为5s
+			conn.setConnectTimeout(5 * 1000);
+			//通过输入流获取图片数据
+			InputStream inStream = conn.getInputStream();
+			//得到图片的二进制数据，以二进制封装得到数据（具有通用性）
+			data = readInputStream(inStream);
+			//创建文件夹与一个文件对象来保存图片
+			StringBuilder sb = new StringBuilder();
+			for(String path : paths){
+				sb.append(path + "\\");
+			}
+			File dir = new File(ROOT_PATH + sb);
+			if(!dir.exists()) {
+				dir.mkdirs();
+			}
+			imageFile = new File(dir, UUID.randomUUID() + ".jpg");
+			//创建输出流
+			FileOutputStream outStream = new FileOutputStream(imageFile);
+			//写入数据
+			outStream.write(data);
+			//关闭输出流
+			outStream.close();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}catch (ProtocolException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		return imageFile.length();
+	}
+
     public static byte[] readInputStream(InputStream inStream){  
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();  
         //创建一个Buffer字符串  

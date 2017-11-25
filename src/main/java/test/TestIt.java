@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
+import cn.acyou.utils.DownloadImage;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
@@ -135,6 +136,13 @@ public class TestIt {
 		String regex = ".*/$";
 		System.out.println(url.matches(regex));
 		
+	}
+
+
+	@Test
+	public void test8(){
+		String url = "http://a3.qpic.cn/psb?/V12nVOYb2aQINu/tDKq3FyDgNzh2sfeXLz9U7D5h8gr9Un0JJIEnzjZRJ0!/b/dOAAAAAAAAAA&bo=AAXkCHAIAA8RCaA!";
+		DownloadImage.downloadImage(url,"3456/789/101112a");
 	}
 	
 	

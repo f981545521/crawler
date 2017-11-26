@@ -144,6 +144,18 @@ public class TestIt {
 		String url = "http://a3.qpic.cn/psb?/V12nVOYb2aQINu/tDKq3FyDgNzh2sfeXLz9U7D5h8gr9Un0JJIEnzjZRJ0!/b/dOAAAAAAAAAA&bo=AAXkCHAIAA8RCaA!";
 		DownloadImage.downloadImage(url,"3456/789/101112a");
 	}
+
+	@Test
+	public void teset9(){
+		Path path = Paths.get("F:\\Qzone\\har\\438842066");
+		File file = path.toFile();
+		if(file.isDirectory()){
+			File[] files = file.listFiles();
+			for(File f : files){
+				System.out.println(f.getPath());
+			}
+		}
+	}
 	
 	
 	

@@ -30,7 +30,8 @@ public class Start {
 
 	private static Logger log = LoggerFactory.getLogger(Start.class);
 
-	private static final String number = "529776581";
+	//private static final String number = "529776581";
+	private static final String number = "1005092516";
 	//private static final int start = 1;
 	//private static final int end = 8;
 
@@ -59,7 +60,7 @@ public class Start {
 					Counter ++;
 					currentDownload(p);
 				}
-
+				System.out.println("下载完毕。");
 			}
 		}
 		

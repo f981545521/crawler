@@ -121,7 +121,7 @@ public class DownloadImage {
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	public static Long downloadImageMultipath(String url,String... paths) {
+	public static Long downloadImageMultipath(String url, String... paths) {
 		URL originalURL;
 		byte[] data;
 		File imageFile = null;
@@ -147,7 +147,7 @@ public class DownloadImage {
 			if(!dir.exists()) {
 				dir.mkdirs();
 			}
-			imageFile = new File(dir, UUID.randomUUID() + ".jpg");
+			imageFile = new File(dir, getFileName(url) + ".jpg");
 			//创建输出流
 			FileOutputStream outStream = new FileOutputStream(imageFile);
 			//写入数据
@@ -216,5 +216,21 @@ public class DownloadImage {
 		int end = content.lastIndexOf("}");
 		return content.substring(begin, end + 1);
 	}
+
+	private static String getFileName(String url){
+		String paramSuffix = UUID.randomUUID().toString();
+		int paramIndex = url.indexOf("?");
+		if (paramIndex != -1){
+			paramSuffix = url.substring(paramIndex + 2).replaceAll("/", "#").replaceAll("\\*", "-");
+		}
+		return paramSuffix;
+	}
+
+	public static void main(String[] args) {
+		String url = "http://r.photo.store.qq.com/psb?/**/rV7PJvv8Pd7BqJa969lDiJ99nsKaPpZ3fEjExxErdMo!/r/dAsBAAAAAAAA";
+		System.out.println(getFileName(url));
+	}
+
+
 
 }

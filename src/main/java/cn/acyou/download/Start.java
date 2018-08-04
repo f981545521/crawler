@@ -30,8 +30,7 @@ public class Start {
 
 	private static Logger log = LoggerFactory.getLogger(Start.class);
 
-	//private static final String number = "529776581";
-	private static final String number = "1005092516";
+	private static final String number = Constant.CURRENT;
 	//private static final int start = 1;
 	//private static final int end = 8;
 
@@ -63,34 +62,7 @@ public class Start {
 				System.out.println("下载完毕。");
 			}
 		}
-		
-		//手动遍历方式
-	/*	for(int i = start ; i <= end ; i++) {
-			*//**
-			 * JSON文件存放路径，推荐：1,2,3,4方便在此处遍历
-			 *//*
-			Path path = Paths.get("F:\\Qzone\\har\\" + number + "\\" + i);
-			byte[] bytes = Files.readAllBytes(path);
-			String content = new String(bytes, "utf-8");
-			//转换成JSON
-			String jsonStr = DownloadImage.getPhotosJsonString(content);
-			
-			List<Photos> photos = JSON.parseObject(jsonStr, new TypeReference<ArrayList<Photos>>() {});
-			for(Photos p : photos) {
-				//限制图片大小（分辨率）
-				if((Integer.parseInt(p.getWidth()) < 720) && (Integer.parseInt(p.getHeight()) < 1280)) {
-					continue;
-				}
-				Counter ++;
-				currentDownload(p);
-				//限制图片太小重试
-*//*				Long len;
-				do {
-					len = currentDownload(p);
-				}while(len < 50);*//*
-			}
-			
-		}*/
+
 	}
 	
 	/**

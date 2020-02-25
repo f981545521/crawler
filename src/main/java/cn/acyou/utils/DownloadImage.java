@@ -77,7 +77,7 @@ public class DownloadImage {
 			//设置请求方式为GET
 			conn.setRequestMethod("GET");
 			//设置超时时间为5s
-			conn.setConnectTimeout(5 * 1000);
+			conn.setConnectTimeout(10 * 1000);
 			//通过输入流获取图片数据
 			InputStream inStream = conn.getInputStream();
 			//得到图片的二进制数据，以二进制封装得到数据（具有通用性）
